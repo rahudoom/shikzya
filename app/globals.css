@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --maxw: 1200px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #475569; /* slate-600 */
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  color: #0f172a; /* ink */
+  letter-spacing: -0.02em;
+}
+
+/* When Lenis smooth scroll is active, it manages scroll position itself. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Scroll-reveal fallback — GSAP toggles inline styles, but if JS/GSAP is
+   unavailable (or reduced motion), content must still be visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+}
+.no-anim .reveal,
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   Subtle background textures — barely-there, brand-tinted. Layered behind
+   content via an absolutely-positioned, pointer-events-none element.
+   --------------------------------------------------------------------------- */
+
+/* Faint dot-grid, lightly tinted with the brand blue (for light sections) */
+.bg-dots {
+  background-image: radial-gradient(rgba(37, 99, 235, 0.10) 1px, transparent 1.6px);
+  background-size: 24px 24px;
+}
+
+/* Light dot-grid for dark (deep-blue) sections */
+.bg-dots-light {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1.6px);
+  background-size: 26px 26px;
+}
+
+/* Thin line-grid, neutral tint so it reads as structure, not colour */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Fade a texture toward its edges so it never reads as a hard, tiled block */
+.mask-fade {
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 78%);
+}
+
+/* Wordmark accent — used by the text-logo fallback */
+.wordmark-shik { color: #1e3a8a; }
+.wordmark-zya { color: #f97316; }
+
+::selection {
+  background: #2563eb;
+  color: #ffffff;
+}
