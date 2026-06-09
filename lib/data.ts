@@ -59,7 +59,7 @@ import {
 export const site = {
   name: "ShikZya",
   url: "https://shikzya.com",
-  loginUrl: "https://ShikZya.com",
+  loginUrl: "https://Shikzya.com",
   edition: "v0.1 · Edition 2026",
   tagline: "Smart Education Management for Modern Institutions",
   description:
